@@ -11,3 +11,13 @@ app.use(cors());
 app.get("/", (req, res) => {
     res.send("Server is Working !!");
 });
+
+app.get("/zohosetup", (req, res) => {
+    console.log("Zoho Setup");
+    console.log(req.query.code);
+    return res.status(200).json({ message: `Zoho Setup : ${req.query.code}` });
+});
+
+app.get("/", (req, res) => {
+    res.send("Server is Working !!");
+});
