@@ -4,7 +4,8 @@ import { Client } from "../models/client.js";
 
 export const router = express.Router();
 
-router.post("/setup", async (req, res) => {
+router.get("/setup", async (req, res) => {
+    console.log("recieved a request");
     const code = req.query.code;
     if (!code) return res.status(400).json({ message: `Code is required` });
 
@@ -14,7 +15,7 @@ router.post("/setup", async (req, res) => {
 
     console.log(tokens);
 
-    const client_ = await Client.findOne({ client_id: process.env.CLIENT_ID });
+    let client_ = await Client.findOne({ client_id: process.env.CLIENT_ID });
 
     if (!client_) {
         client_ = new Client({

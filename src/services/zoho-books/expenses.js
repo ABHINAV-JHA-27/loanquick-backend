@@ -1,1 +1,0 @@
-const getExpenses = async (organizationId) => {};
