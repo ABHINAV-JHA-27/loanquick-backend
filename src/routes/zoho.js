@@ -35,5 +35,3 @@ router.get("/setup", async (req, res) => {
 
     return res.status(200).json({ message: `Success`, data: client_ });
 });
-
-router.get("/", async (req, res) => {});

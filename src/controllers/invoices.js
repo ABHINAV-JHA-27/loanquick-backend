@@ -2,13 +2,15 @@ import axios from "axios";
 import { Client } from "../models/client.js";
 import { endpoints } from "../utils/zoho-endpoints.js";
 
-const getInvoices = async (organizationId) => {
+const getInvoices = async (req, res) => {
     let client_ = await Client.findOne({ client_id: process.env.CLIENT_ID });
 
-    console.log(client_);
+    if (!client_) {
+        return res.json({ message: "Client not found" });
+    }
 
     const response = await axios.get(
-        `${endpoints.getExpenses}?organization_id=${""}`,
+        `${endpoints.getExpenses}?organization_id=60029297037`,
         {
             headers: {
                 Authorization: `Zoho-oauthtoken ${client_.accessToken}`,
@@ -16,7 +18,7 @@ const getInvoices = async (organizationId) => {
         }
     );
 
-    return response.data;
+    res.json({ message: "Success", data: response.data });
 };
 
 export { getInvoices };
