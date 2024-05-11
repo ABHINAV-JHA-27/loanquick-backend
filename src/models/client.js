@@ -2,6 +2,14 @@ import mongoose from "mongoose";
 
 const clientSchema = new mongoose.Schema(
     {
+        client_id: {
+            type: String,
+            required: [true, "Please enter your client id"],
+        },
+        client_secret: {
+            type: String,
+            required: [true, "Please enter your client secret"],
+        },
         accessToken: {
             type: String,
             required: [true, "Please enter your access token"],
