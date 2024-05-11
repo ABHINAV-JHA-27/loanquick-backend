@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const invoiceSchema = new mongoose.Schema(
+const billsSchema = new mongoose.Schema(
     {
         client_id: {
             type: mongoose.Schema.ObjectId,
@@ -12,11 +12,17 @@ const invoiceSchema = new mongoose.Schema(
         vendor_name: {
             type: String,
         },
+        date: {
+            type: String,
+        },
+        due_date: {
+            type: String,
+        },
         total: {
             type: Number,
         },
-        date: {
-            type: String,
+        Balance: {
+            type: Number,
         }
     },
     {
@@ -24,4 +30,4 @@ const invoiceSchema = new mongoose.Schema(
     }
 );
 
-export const Invoice = mongoose.models.invoice || mongoose.model("invoice", invoiceSchema);
+export const Bill = mongoose.models.bill || mongoose.model("bill", billSchema);
