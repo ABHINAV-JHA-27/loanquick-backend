@@ -12,7 +12,3 @@ app.get("/", (req, res) => {
 });
 
 app.use("/zoho", ZohoRouter);
-
-app.get("/", (req, res) => {
-    res.send("Server is Working !!");
-});
