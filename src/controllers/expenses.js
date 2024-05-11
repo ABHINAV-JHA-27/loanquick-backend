@@ -1,8 +1,21 @@
 import axios from "axios";
 import { Client } from "../models/client.js";
+import { Expense } from "../models/expense.js";
 import { endpoints } from "../utils/zoho-endpoints.js";
 
 const getExpenses = async (req, res) => {
+    let client_ = await Client.findOne({ client_id: process.env.CLIENT_ID });
+
+    if (!client_) {
+        return res.json({ message: "Client not found" });
+    }
+
+    const expenses = await Expense.find({ client_id: client_._id });
+
+    res.json({ message: "Success", data: expenses });
+};
+
+const getExpensesResync = async (req, res) => {
     let client_ = await Client.findOne({ client_id: process.env.CLIENT_ID });
 
     if (!client_) {
@@ -18,9 +31,22 @@ const getExpenses = async (req, res) => {
         }
     );
 
-    console.log(response.data);
+    let data = response.data;
+    data = data.expenses;
+    data = data.map((expense) => {
+        return {
+            client_id: client_._id,
+            vendor_id: expense.vendor_id,
+            vendor_name: expense.vendor_name,
+            total: expense.total,
+            expense_type: expense.expense_type,
+            date: expense.date,
+        };
+    });
 
-    res.json({ message: "Success", data: response.data });
+    await Expense.insertMany(data);
+
+    res.json({ message: "Success", data: data });
 };
 
-export { getExpenses };
+export { getExpenses, getExpensesResync };

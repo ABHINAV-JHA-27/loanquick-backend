@@ -4,7 +4,7 @@ const billsSchema = new mongoose.Schema(
     {
         client_id: {
             type: mongoose.Schema.ObjectId,
-            required: [true, "Please enter your client id"]
+            required: [true, "Please enter your client id"],
         },
         vendor_id: {
             type: String,
@@ -23,11 +23,11 @@ const billsSchema = new mongoose.Schema(
         },
         Balance: {
             type: Number,
-        }
+        },
     },
     {
         timestamps: true,
     }
 );
 
-export const Bill = mongoose.models.bill || mongoose.model("bill", billSchema);
+export const Bill = mongoose.models.bill || mongoose.model("bill", billsSchema);

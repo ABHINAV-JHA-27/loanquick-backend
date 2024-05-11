@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
-const Schema = new mongoose.Schema(
+const expenseSchema = new mongoose.Schema(
     {
         client_id: {
             type: mongoose.Schema.ObjectId,
-            required: [true, "Please enter your client id"]
+            required: [true, "Please enter your client id"],
         },
         vendor_id: {
             type: String,
@@ -20,11 +20,12 @@ const Schema = new mongoose.Schema(
         },
         expense_type: {
             type: String,
-        }
+        },
     },
     {
         timestamps: true,
     }
 );
 
-export const Expense = mongoose.models.expense || mongoose.model("expense", expenseSchema);
+export const Expense =
+    mongoose.models.expense || mongoose.model("expense", expenseSchema);
