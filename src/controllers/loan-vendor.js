@@ -24,6 +24,7 @@ const createLoanVendor = async (req, res) => {
 
     let vendor = new LoanVendor({
         client_id: client._id,
+        email: data.email,
         name: data.name,
         logo: data.logo,
         approval_rate: data.approval_rate,

@@ -6,6 +6,10 @@ const loanVendorSchema = new mongoose.Schema(
             type: mongoose.Schema.ObjectId,
             required: [true, "Please enter your client id"]
         },
+        email: {
+          type: String,
+          required: [true, "Please enter your email"]
+        },
         name: {
             type: String,
         },
