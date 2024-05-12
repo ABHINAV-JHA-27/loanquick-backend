@@ -2,14 +2,7 @@ import { Client } from "../models/client.js";
 import { LoanVendor } from "../models/loan-vendor.js";
 
 const getLoanVendors = async (req, res) => {
-    let client_ = await Client.findOne({ client_id: process.env.CLIENT_ID });
-
-    if (!client_) {
-        return res.json({ message: "Client not found" });
-    }
-
-    const vendors = await LoanVendor.find({ client_id: client_._id });
-
+    const vendors = await LoanVendor.find({});
     res.json({ message: "Success", data: vendors });
 };
 
@@ -23,7 +16,6 @@ const createLoanVendor = async (req, res) => {
     let data = req.body;
 
     let vendor = new LoanVendor({
-        client_id: client._id,
         email: data.email,
         name: data.name,
         logo: data.logo,
@@ -40,4 +32,23 @@ const createLoanVendor = async (req, res) => {
     res.json({ message: "Success", data: vendor });
 };
 
-export { createLoanVendor, getLoanVendors };
+const isLoanVendorPresent = async (req, res) => {
+    let data = req.body;
+    const vendor = await LoanVendor.findOne({
+        email: data.email,
+    });
+
+    console.log(vendor);
+
+    if (vendor) {
+        res.json({ message: "Success", present: true });
+        return;
+    }
+
+    res.json({
+        message: "Success",
+        present: false,
+    });
+};
+
+export { createLoanVendor, getLoanVendors, isLoanVendorPresent };

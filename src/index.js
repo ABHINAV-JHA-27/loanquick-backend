@@ -20,5 +20,5 @@ app.use("/zoho", ZohoRouter);
 app.use("/expense", ExpenseRouter);
 app.use("/bill", BillRouter);
 app.use("/invoice", InvoiceRouter);
-app.use("/financial-health/credit-score", CreditScoreRouter);
+app.use("/financial-health", CreditScoreRouter);
 app.use("/loan-vendor", LoanVendorRouter);

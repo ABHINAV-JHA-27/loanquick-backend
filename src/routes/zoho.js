@@ -33,5 +33,38 @@ router.get("/setup", async (req, res) => {
 
     await client_.save();
 
-    return res.status(200).json({ message: `Success`, data: client_ });
+    res.send(`<!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Centered</title>
+    <style>
+      body {
+        background-color: #F9FAFC;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      button {
+        background-color: #6765E8;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 20px;
+        cursor: pointer;
+      }
+    </style>
+    </head>
+    <body>
+    <button>Open in App</button>
+    </body>
+    </html>
+    `);
 });
