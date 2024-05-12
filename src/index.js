@@ -1,11 +1,11 @@
 import cors from "cors";
 import express from "express";
-import { router as ZohoRouter } from "./routes/zoho.js";
 import { router as BillRouter } from "./routes/bill.js";
+import { router as CreditScoreRouter } from "./routes/credit-score.js";
 import { router as ExpenseRouter } from "./routes/expenses.js";
 import { router as InvoiceRouter } from "./routes/invoice.js";
 import { router as LoanVendorRouter } from "./routes/loan-vendor.js";
-import { router as CreditScoreRouter } from "./routes/credit-score.js";
+import { router as ZohoRouter } from "./routes/zoho.js";
 
 export const app = express();
 
@@ -22,3 +22,5 @@ app.use("/bill", BillRouter);
 app.use("/invoice", InvoiceRouter);
 app.use("/financial-health", CreditScoreRouter);
 app.use("/loan-vendor", LoanVendorRouter);
+
+// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));

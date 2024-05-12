@@ -18,6 +18,7 @@
         "dotenv": "^16.4.5",
         "express": "^4.19.2",
         "form-data": "^4.0.0",
+        "fs": "^0.0.1-security",
         "got": "^14.2.1",
         "moment-timezone": "^0.5.45",
         "mongoose": "^8.3.4",
